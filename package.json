@@ -1,13 +1,14 @@
 {
   "name": "wirk",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "web": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test src/utils/__tests__/domain.test.js"
   },
   "dependencies": {
     "firebase": "^10.12.0",
@@ -31,5 +32,21 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/aethronlabs/wirk.git"
-  }
+  },
+  "author": "Bilal Sabugar <bilal.07.04.07@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/aethronlabs/wirk/issues"
+  },
+  "homepage": "https://github.com/aethronlabs/wirk#readme",
+  "keywords": [
+    "productivity",
+    "executive-ai",
+    "kanban",
+    "local-first",
+    "gemini-ai",
+    "byok",
+    "pomodoro",
+    "encrypted-diary",
+    "workspace"
+  ]
 }
