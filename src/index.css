@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── 1. EXECUTIVE MONOCHROME PALETTE: DARK & LIGHT THEMES ── */
+
+  /* Obsidian Dark Mode */
+  :root, [data-theme="dark"], .dark {
+    --shadow-modal:  0 24px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    --bg-base:       #000000;
+    --bg-panel:      #0C0C0E;
+    --bg-surface:    #141416;
+    --bg-raised:     #1C1C1F;
+    --bg-overlay:    rgba(12, 12, 14, 0.88);
+    --header-bg:     rgba(12, 12, 14, 0.80);
+    --modal-bg:      rgba(12, 12, 14, 0.90);
+    --bg-hover:      rgba(255, 255, 255, 0.06);
+
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border-dim:    rgba(255, 255, 255, 0.08);
+    --border-mid:    rgba(255, 255, 255, 0.15);
+    --border-hi:     rgba(255, 255, 255, 0.28);
+
+    /* Executive Primary High-Contrast Buttons */
+    --accent:          #FFFFFF;
+    --accent-contrast: #000000;
+    --accent-dim:      rgba(255, 255, 255, 0.08);
+    --accent-glow:     rgba(255, 255, 255, 0.12);
+
+    --success:       #30D158;
+    --danger:        #FF453A;
+    --warning:       #FF9F0A;
+    --info:          #0A84FF;
+
+    --text-hi:       #F4F4F5;
+    --text-base:     #A1A1AA;
+    --text-muted:    #71717A;
+    --text-dim:      #52525B;
+
+    --input-bg:      #121214;
+    --input-focus-bg:#18181B;
+    --input-border:  rgba(255, 255, 255, 0.08);
+
+    --scrollbar:     rgba(255, 255, 255, 0.08);
+    --scrollbar-h:   rgba(255, 255, 255, 0.18);
+
+    --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-md:     0 4px 16px rgba(0, 0, 0, 0.6);
+    --shadow-lg:     0 12px 32px rgba(0, 0, 0, 0.7);
+    --shadow-card:   0 2px 10px rgba(0, 0, 0, 0.4);
+
+    --radius-sm:     8px;
+    --radius-md:     12px;
+    --radius-lg:     16px;
+    --radius-xl:     24px;
+    --radius-pill:   9999px;
+  }
+
+  /* Studio Light Mode (High Contrast & Clean Hierarchy) */
+  [data-theme="light"], .light {
+    --shadow-modal:  0 20px 45px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    --bg-base:       #F5F5F7;
+    --bg-panel:      #FFFFFF;
+    --bg-surface:    #EBEBF0;
+    --bg-raised:     #E1E1E6;
+    --bg-overlay:    rgba(245, 245, 247, 0.88);
+    --header-bg:     rgba(245, 245, 247, 0.82);
+    --modal-bg:      rgba(255, 255, 255, 0.94);
+    --bg-hover:      rgba(0, 0, 0, 0.04);
+
+    --border-subtle: rgba(0, 0, 0, 0.05);
+    --border-dim:    rgba(0, 0, 0, 0.09);
+    --border-mid:    rgba(0, 0, 0, 0.16);
+    --border-hi:     rgba(0, 0, 0, 0.30);
+
+    /* Executive Inverted Primary for Light: Solid Black */
+    --accent:          #18181B;
+    --accent-contrast: #FFFFFF;
+    --accent-dim:      rgba(0, 0, 0, 0.06);
+    --accent-glow:     rgba(0, 0, 0, 0.08);
+
+    --success:       #34C759;
+    --danger:        #FF3B30;
+    --warning:       #FF9500;
+    --info:          #007AFF;
+
+    --text-hi:       #18181B;
+    --text-base:     #52525B;
+    --text-muted:    #71717A;
+    --text-dim:      #A1A1AA;
+
+    --input-bg:      #FFFFFF;
+    --input-focus-bg:#FFFFFF;
+    --input-border:  rgba(0, 0, 0, 0.14);
+
+    --scrollbar:     rgba(0, 0, 0, 0.12);
+    --scrollbar-h:   rgba(0, 0, 0, 0.25);
+
+    --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-md:     0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-lg:     0 12px 28px rgba(0, 0, 0, 0.08);
+    --shadow-card:   0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  /* ── 2. BASE STYLING ── */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    height: 100dvh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-base);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.015em;
+  }
+
+  /* ── 3. GLASS SURFACES & CARDS ── */
+  .glass-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-surface {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .glass-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
+  }
+  .glass-card:hover {
+    border-color: var(--border-dim);
+  }
+
+  .glass-pill {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Refined scrollbars */
+  .scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scroll::-webkit-scrollbar-track { background: transparent; }
+  .scroll::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: var(--radius-pill);
+  }
+  .scroll::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-h); }
+
+  /* Hide scrollbar completely across WebKit, Firefox and IE/Edge */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+
+  /* ── 4. EXECUTIVE BUTTONS & CONTROLS ── */
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    opacity: 0.90;
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  .btn-ghost {
+    background: var(--bg-hover);
+    color: var(--text-hi);
+    font-weight: 500;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-ghost:hover {
+    background: var(--accent-dim);
+    border-color: var(--border-dim);
+  }
+  .btn-ghost:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  .btn-secondary {
+    background: var(--bg-surface);
+    color: var(--text-hi);
+    font-weight: 500;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    transition: all 0.18s ease;
+  }
+  .btn-secondary:hover {
+    background: var(--bg-raised);
+  }
+
+  .input-terminal {
+    background: var(--input-bg);
+    color: var(--text-hi);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .input-terminal:focus {
+    border-color: var(--border-hi);
+    background: var(--input-focus-bg);
+    box-shadow: 0 0 0 2px var(--accent-dim);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  /* Progress track */
+  .progress-track {
+    width: 100%;
+    height: 4px;
+    background: var(--border-subtle);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: var(--radius-pill);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* ── 5. LIGHT THEME AUTOMATIC OVERRIDES FOR TAILWIND COMPONENT CLASSES ── */
+[data-theme="light"] .text-white {
+  color: #18181B !important;
+}
+
+[data-theme="light"] .text-zinc-100,
+[data-theme="light"] .text-zinc-200,
+[data-theme="light"] .text-zinc-300 {
+  color: #27272A !important;
+}
+
+[data-theme="light"] .text-zinc-400 {
+  color: #52525B !important;
+}
+
+[data-theme="light"] .text-zinc-500 {
+  color: #71717A !important;
+}
+
+[data-theme="light"] .border-white\/\[0\.07\],
+[data-theme="light"] .border-white\/\[0\.08\],
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/15,
+[data-theme="light"] .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.04\],
+[data-theme="light"] .bg-white\/\[0\.05\],
+[data-theme="light"] .bg-white\/\[0\.08\],
+[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .bg-zinc-800 {
+  background-color: #E4E4E7 !important;
+  color: #18181B !important;
+}
+
+[data-theme="light"] .bg-zinc-900 {
+  background-color: #F4F4F5 !important;
+  color: #18181B !important;
+}
+
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-300 {
+  color: #18181B !important;
+}
+
+[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-slate-500,
+[data-theme="light"] .text-slate-600 {
+  color: #52525B !important;
+}
+
+[data-theme="light"] .text-slate-700,
+[data-theme="light"] .text-slate-800 {
+  color: #71717A !important;
+}
+
+[data-theme="light"] select option {
+  background-color: #FFFFFF !important;
+  color: #18181B !important;
+}
+
+/* ── 6. SUBTLE DIVIDERS (DARK-ON-DARK & LIGHT-ON-LIGHT) ── */
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  border-top-width: 1px !important;
+  border-color: var(--border-subtle) !important;
+}
+
+hr, .border-divider {
+  border-color: var(--border-subtle) !important;
+}
+
+/* ── 7. SOOTHING PROMPT STUDIO BLOOM & EXPANSION ANIMATIONS ── */
+@keyframes studioBloomIn {
+  0% {
+    opacity: 0;
+    transform: translateY(64px) scale(0.92);
+    filter: blur(16px);
+    border-radius: 42px;
+  }
+  50% {
+    opacity: 0.95;
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    border-radius: 0px;
+  }
+}
+
+@keyframes studioBloomOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    border-radius: 0px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.93);
+    filter: blur(12px);
+    border-radius: 36px;
+  }
+}
+
+@keyframes studioContentFade {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-studio-bloom-in {
+  animation: studioBloomIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: bottom center;
+  will-change: transform, opacity, filter, border-radius;
+}
+
+.animate-studio-bloom-out {
+  animation: studioBloomOut 0.28s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  transform-origin: bottom center;
+  will-change: transform, opacity, filter, border-radius;
+}
+
+.animate-studio-content {
+  animation: studioContentFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s backwards;
+}
+
+
+
+/* ── 9. TELEGRAM-INSPIRED RADIAL WAVE TRANSITION & FILM GRAIN ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@keyframes wirkWaveSweep {
+  0% {
+    clip-path: circle(0px at var(--origin-x, 50%) var(--origin-y, 50%));
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.95;
+  }
+  100% {
+    clip-path: circle(160vmax at var(--origin-x, 50%) var(--origin-y, 50%));
+    opacity: 0;
+  }
+}
+
+@keyframes wirkRingExpand {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+  100% {
+    width: 260vmax;
+    height: 260vmax;
+    opacity: 0;
+  }
+}
+
+@keyframes wirkGrainDissolve {
+  0% {
+    opacity: 0.35;
+  }
+  60% {
+    opacity: 0.20;
+  }
+  100% {
+    opacity: 0;
+  }
+}

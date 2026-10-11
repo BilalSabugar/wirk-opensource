@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#141418"/>
+      <stop offset="100%" stopColor="#050507"/>
+    </linearGradient>
+
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="rgba(255, 255, 255, 0.28)"/>
+      <stop offset="50%" stopColor="rgba(255, 255, 255, 0.06)"/>
+      <stop offset="100%" stopColor="rgba(255, 255, 255, 0.16)"/>
+    </linearGradient>
+
+    <linearGradient id="primaryGrad" x1="16" y1="14" x2="88" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FF3B30"/>
+      <stop offset="42%" stopColor="#FF9500"/>
+      <stop offset="100%" stopColor="#FFCC00"/>
+    </linearGradient>
+
+    <linearGradient id="secGrad" x1="20" y1="14" x2="86" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FF6B00"/>
+      <stop offset="60%" stopColor="#FFA800"/>
+      <stop offset="100%" stopColor="#FFD60A"/>
+    </linearGradient>
+
+    <linearGradient id="emberGrad" x1="50" y1="62" x2="82" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FF9500"/>
+      <stop offset="100%" stopColor="#FF2D55"/>
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Aerospace Squircle Base -->
+  <rect x="3" y="3" width="94" height="94" rx="24" fill="url(#bgGrad)"/>
+  <rect x="3" y="3" width="94" height="94" rx="24" stroke="url(#borderGrad)" stroke-width="1.5"/>
+
+  <!-- Emblem -->
+  <g transform="scale(0.72) translate(19.5, 19.5)" filter="url(#glow)">
+    <!-- 1. Vertical Monolith / Anvil Spine -->
+    <path d="M20 18C20 15.7909 21.7909 14 24 14H35C36.6569 14 38 15.3431 38 17V81C38 83.7614 35.7614 86 33 86H24C21.7909 86 20 84.2091 20 82V18Z" fill="url(#primaryGrad)"/>
+
+    <!-- 2. Upper Intent Wing -->
+    <path d="M34 14H79.6708C82.8596 14 84.7761 17.5256 83.0447 20.2015L74.8814 32.8179C74.0041 34.1738 72.4883 35 70.8576 35H34V14Z" fill="url(#secGrad)"/>
+
+    <!-- 3. Mid Kinetic Blade -->
+    <path d="M34 43H65.234C68.4287 43 70.3444 46.5367 68.6019 49.2109L62.7753 58.1524C61.8988 59.4975 60.3926 60.3164 58.7725 60.3164H34V43Z" fill="url(#primaryGrad)"/>
+
+    <!-- 4. Kinetic Ignition Ember -->
+    <path d="M48 83.4735L62.8284 68.6451C64.3905 67.083 66.9232 67.083 68.4853 68.6451L79.4735 79.6333C81.8166 81.9764 80.1561 86 76.8402 86H50.5265C48.2439 86 46.8166 83.4735 48 83.4735Z" fill="url(#emberGrad)" opacity="0.95"/>
+
+    <!-- 5. Optical Micro-Bevels -->
+    <path d="M38 18L72 18L64 31H38V18Z" fill="#FFFFFF" opacity="0.22"/>
+    <path d="M38 46L58 46L52 56H38V46Z" fill="#FFFFFF" opacity="0.16"/>
+  </g>
+</svg>
