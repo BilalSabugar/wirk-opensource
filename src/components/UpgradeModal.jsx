@@ -1,322 +1,188 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  X, Check, Zap, Sparkles, Crown, Shield, Heart, 
-  ArrowRight, Flame, Layers, BarChart3, Coffee, ExternalLink,
-  CreditCard, CheckCircle2, Star
+  X, Check, Zap, Sparkles, Cloud, Shield, Heart, 
+  ArrowRight, Coffee, ExternalLink, HardDrive, Cpu, Laptop
 } from 'lucide-react';
-import ForgeLogo from './ForgeLogo';
+import WirkLogo from './WirkLogo';
 
-export default function UpgradeModal({ isOpen, onClose, currentPlan = 'starter' }) {
-  const [billingCycle, setBillingCycle] = useState('annual'); // 'monthly' | 'annual' | 'lifetime'
-  const [copiedLink, setCopiedLink] = useState(false);
-
+export default function UpgradeModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
-  // External payment URLs (can be updated with user's real Stripe/LemonSqueezy/Gumroad links)
-  const STRIPE_PRO_MONTHLY = 'https://buy.stripe.com/test_pro_monthly';
-  const STRIPE_PRO_ANNUAL  = 'https://buy.stripe.com/test_pro_annual';
-  const STRIPE_LIFETIME    = 'https://buy.stripe.com/test_founder_lifetime';
-  const BUY_ME_A_COFFEE    = 'https://buymeacoffee.com/bilalsabugar';
-
-  const handleCheckout = (planId) => {
-    let targetUrl = '';
-    if (planId === 'pro') {
-      targetUrl = billingCycle === 'annual' ? STRIPE_PRO_ANNUAL : STRIPE_PRO_MONTHLY;
-    } else if (planId === 'lifetime') {
-      targetUrl = STRIPE_LIFETIME;
-    }
-
-    // If real Stripe link is not yet set up, offer friendly configuration guidance
-    if (targetUrl.includes('test_')) {
-      alert(`Stripe / LemonSqueezy Checkout Triggered:\n\nTo connect your live payment gateway, update the checkout links in src/components/UpgradeModal.jsx with your Stripe Payment Link, LemonSqueezy, or Gumroad URL.\n\nOpening creator support link for demonstration.`);
-      window.open(BUY_ME_A_COFFEE, '_blank');
-      return;
-    }
-
-    window.open(targetUrl, '_blank');
-  };
+  const BUY_ME_A_COFFEE_MAIN = 'https://buymeacoffee.com/bilal07040s';
+  const BUY_ME_A_COFFEE_MEMBERSHIP = 'https://buymeacoffee.com/bilal07040s/membership';
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
       style={{
-        background: 'rgba(0, 0, 0, 0.70)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)'
+        background: 'rgba(0, 0, 0, 0.72)',
+        backdropFilter: 'blur(32px) saturate(190%)',
+        WebkitBackdropFilter: 'blur(32px) saturate(190%)'
       }}
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl border p-6 sm:p-8 animate-fade-in relative scroll"
+        className="w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-[32px] shadow-[0_32px_80px_-16px_rgba(0,0,0,0.85)] border p-6 sm:p-10 animate-fade-in relative scroll glass-apple"
         style={{
-          background: 'var(--bg-panel)',
-          borderColor: 'var(--border-mid)',
-          color: 'var(--text-hi)',
+          background: 'var(--modal-bg, rgba(14, 14, 17, 0.92))',
+          borderColor: 'var(--border-mid, rgba(255, 255, 255, 0.12))',
+          color: 'var(--text-hi, #FFFFFF)',
         }}
         onClick={e => e.stopPropagation()}
       >
+        {/* Luminous Glow Elements */}
+        <div className="absolute top-0 left-1/3 w-80 h-80 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/15 rounded-full blur-[100px] pointer-events-none -z-10" />
+
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-zinc-400 hover:text-white transition-colors cursor-pointer"
-          title="Close pricing modal"
+          className="absolute top-6 right-6 p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-all cursor-pointer border border-white/5"
+          title="Close modal"
         >
           <X size={18} />
         </button>
 
         {/* Header */}
-        <div className="text-center max-w-xl mx-auto space-y-3 mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500 text-xs font-semibold">
-            <Crown size={14} className="fill-amber-500/20" />
-            <span>WIRK Executive Membership</span>
+        <div className="text-center max-w-xl mx-auto space-y-3 mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-semibold backdrop-blur-md">
+            <Cloud size={14} />
+            <span>Self-Hosted vs Managed Cloud</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: 'var(--text-hi)' }}>
-            Supercharge Your Focus & Execution Velocity
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+            Choose Your Execution Setup
           </h2>
-          <p className="text-xs sm:text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Elevate your workspace with autonomous AI orchestration, unrestricted sprint modules, and executive analytics.
+          <p className="text-xs sm:text-sm leading-relaxed text-zinc-400">
+            Enjoy full data ownership on your machine, or switch to WIRK Cloud for effortless zero-maintenance synchronization across all devices.
           </p>
-
-          {/* Billing Cycle Selector */}
-          <div className="pt-2 flex items-center justify-center">
-            <div className="p-1 rounded-xl border flex items-center gap-1 bg-black/5 dark:bg-white/5" style={{ borderColor: 'var(--border-subtle)' }}>
-              <button
-                type="button"
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  billingCycle === 'monthly'
-                    ? 'bg-emerald-500 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingCycle('annual')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                  billingCycle === 'annual'
-                    ? 'bg-emerald-500 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                <span>Annual</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold">Save 27%</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingCycle('lifetime')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                  billingCycle === 'lifetime'
-                    ? 'bg-amber-500 text-zinc-950 font-bold shadow-xs'
-                    : 'text-amber-400 hover:text-amber-300'
-                }`}
-              >
-                <Sparkles size={11} />
-                <span>Founder Pass</span>
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+        {/* Comparison Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8">
           
-          {/* Card 1: Starter (Free) */}
-          <div className="p-5 rounded-2xl border flex flex-col justify-between space-y-5 bg-black/[0.02] dark:bg-white/[0.02]"
-               style={{ borderColor: 'var(--border-subtle)' }}>
+          {/* Card 1: Open Source (Self-Hosted) */}
+          <div className="p-7 rounded-[26px] border border-white/10 bg-zinc-900/40 backdrop-blur-xl flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-bold">Tier 01</span>
-                <h3 className="text-lg font-bold" style={{ color: 'var(--text-hi)' }}>Starter Operator</h3>
-                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Essential productivity toolkit for individual focus.</p>
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Open Source</span>
+                <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-zinc-400">CURRENT SETUP</span>
               </div>
+              <h3 className="text-xl font-bold text-white">Local-First (Community)</h3>
+              <p className="text-xs text-zinc-400">100% free, runs entirely in your browser with zero server dependencies.</p>
 
               <div className="pt-2">
-                <span className="text-3xl font-extrabold" style={{ color: 'var(--text-hi)' }}>$0</span>
-                <span className="text-xs ml-1" style={{ color: 'var(--text-muted)' }}>/ forever</span>
+                <span className="text-3xl font-extrabold text-white">$0</span>
+                <span className="text-xs ml-1 text-zinc-400">/ forever free</span>
               </div>
 
-              <div className="h-px bg-black/5 dark:bg-white/5" />
+              <div className="h-px bg-white/5" />
 
-              <ul className="space-y-2.5 text-xs" style={{ color: 'var(--text-muted)' }}>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-emerald-500 shrink-0" />
-                  <span>Up to 5 Active Project Modules</span>
+              <ul className="space-y-3 text-xs text-zinc-300">
+                <li className="flex items-center gap-2.5">
+                  <Check size={14} className="text-cyan-400 shrink-0" />
+                  <span>Local Storage in your browser</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-emerald-500 shrink-0" />
-                  <span>5-Stage Kanban Workflow Pipeline</span>
+                <li className="flex items-center gap-2.5">
+                  <Check size={14} className="text-cyan-400 shrink-0" />
+                  <span>Bring-Your-Own-Key (BYOK) Google Gemini AI</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-emerald-500 shrink-0" />
-                  <span>Standard ARIA AI (Up to 50 daily turns)</span>
+                <li className="flex items-center gap-2.5">
+                  <Check size={14} className="text-cyan-400 shrink-0" />
+                  <span>AES-GCM-256 encrypted diary</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-emerald-500 shrink-0" />
-                  <span>Deep Focus Pomodoro Timer</span>
+                <li className="flex items-center gap-2.5">
+                  <Check size={14} className="text-cyan-400 shrink-0" />
+                  <span>Full source code modification rights (MIT)</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-emerald-500 shrink-0" />
-                  <span>AES-GCM-256 Client-Side Diary Encryption</span>
+                <li className="flex items-center gap-2.5 text-zinc-500">
+                  <span>Manual backup & API key maintenance</span>
                 </li>
               </ul>
             </div>
 
             <button
-              disabled
-              className="w-full py-2.5 px-4 rounded-xl border text-xs font-semibold opacity-70 cursor-default"
-              style={{ borderColor: 'var(--border-subtle)', background: 'var(--bg-surface)' }}
+              onClick={onClose}
+              className="w-full py-3 px-4 rounded-xl border border-white/10 text-xs font-semibold text-zinc-300 hover:bg-white/5 transition-all text-center"
             >
-              Current Active Plan
+              Continue in Local Mode
             </button>
           </div>
 
-          {/* Card 2: Executive Pro (Featured) */}
-          <div className="p-6 rounded-2xl border-2 flex flex-col justify-between space-y-5 relative shadow-xl"
+          {/* Card 2: WIRK Cloud (Managed) */}
+          <div className="p-7 rounded-[26px] border-2 border-emerald-500 flex flex-col justify-between space-y-6 relative shadow-2xl"
                style={{
-                 borderColor: '#10B981',
-                 background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%)',
+                 background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(10, 10, 12, 0.9) 100%)'
                }}>
             
-            {/* Badge */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
-              Most Popular · Executive Power
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-emerald-500 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-lg shadow-emerald-500/30 flex items-center gap-1.5">
+              <Sparkles size={11} className="fill-current" />
+              <span>Hassle-Free · Instant Sync</span>
             </div>
 
             <div className="space-y-4 pt-1">
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-500 font-bold">Tier 02</span>
-                <h3 className="text-lg font-bold" style={{ color: 'var(--text-hi)' }}>Executive Pro</h3>
-                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Complete autonomous workspace intelligence for high performers.</p>
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-bold">Hosted SaaS</span>
+                <span className="text-xs font-mono font-bold text-emerald-400">$5 / month</span>
               </div>
+              <h3 className="text-xl font-bold text-white">WIRK Cloud Edition</h3>
+              <p className="text-xs text-zinc-300">Don't want the hassle of managing keys and backups? Let us handle the cloud infrastructure.</p>
 
               <div className="pt-2">
-                <span className="text-3xl font-extrabold text-emerald-500">
-                  {billingCycle === 'annual' ? '$7' : '$9'}
-                </span>
-                <span className="text-xs ml-1" style={{ color: 'var(--text-muted)' }}>
-                  {billingCycle === 'annual' ? '/ month (billed $79/yr)' : '/ month'}
-                </span>
+                <span className="text-3xl font-extrabold text-emerald-400">$5</span>
+                <span className="text-xs ml-1 text-zinc-300">/ mo on Buy Me a Coffee</span>
               </div>
 
               <div className="h-px bg-emerald-500/20" />
 
-              <ul className="space-y-2.5 text-xs" style={{ color: 'var(--text-hi)' }}>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span><strong>Unlimited</strong> Projects & Submodules</span>
+              <ul className="space-y-3 text-xs text-white">
+                <li className="flex items-center gap-2.5 font-medium">
+                  <Check size={14} className="text-emerald-400 shrink-0" />
+                  <span><strong>Zero Setup:</strong> Instant sync across phone, tablet & laptop</span>
                 </li>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span><strong>Full 8,192 Token</strong> ARIA Intelligence</span>
+                <li className="flex items-center gap-2.5 font-medium">
+                  <Check size={14} className="text-emerald-400 shrink-0" />
+                  <span><strong>Managed AI Intelligence:</strong> No personal API keys needed</span>
                 </li>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span>Voice Companion Real-Time Audio Chat</span>
+                <li className="flex items-center gap-2.5 font-medium">
+                  <Check size={14} className="text-emerald-400 shrink-0" />
+                  <span><strong>Automated Cloud Backups:</strong> Never lose your tasks or diary</span>
                 </li>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span>Autonomous Blocker Clearing & Dependency Maps</span>
-                </li>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span>Velocity Burndown & Executive Visual Analytics</span>
-                </li>
-                <li className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
-                  <span>1-Click PDF, CSV & JSON Executive Exports</span>
+                <li className="flex items-center gap-2.5 font-medium">
+                  <Check size={14} className="text-emerald-400 shrink-0" />
+                  <span><strong>Priority Support:</strong> Direct founder access & feature votes</span>
                 </li>
               </ul>
             </div>
 
-            <button
-              onClick={() => handleCheckout('pro')}
-              className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs shadow-lg shadow-emerald-500/20 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            <a
+              href={BUY_ME_A_COFFEE_MEMBERSHIP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs shadow-xl shadow-emerald-500/25 active:scale-98 transition-all flex items-center justify-center gap-2 text-center"
             >
-              <span>Upgrade to Executive Pro</span>
+              <span>Get WIRK Cloud ($5/mo)</span>
               <ArrowRight size={14} />
-            </button>
-          </div>
-
-          {/* Card 3: Founder Pass (Lifetime) */}
-          <div className="p-5 rounded-2xl border flex flex-col justify-between space-y-5 relative bg-amber-500/[0.03] hover:border-amber-500/40 transition-all"
-               style={{ borderColor: 'rgba(245, 158, 11, 0.3)' }}>
-            
-            <div className="space-y-4">
-              <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400 font-bold flex items-center gap-1">
-                  <Sparkles size={11} />
-                  <span>Limited Early Access</span>
-                </span>
-                <h3 className="text-lg font-bold" style={{ color: 'var(--text-hi)' }}>Founder Lifetime Pass</h3>
-                <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Pay once, own all Pro features forever. Zero recurring subscriptions.</p>
-              </div>
-
-              <div className="pt-2">
-                <span className="text-3xl font-extrabold text-amber-400">$39</span>
-                <span className="text-xs ml-1" style={{ color: 'var(--text-muted)' }}>/ one-time pay</span>
-              </div>
-
-              <div className="h-px bg-amber-500/20" />
-
-              <ul className="space-y-2.5 text-xs" style={{ color: 'var(--text-muted)' }}>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-amber-400 shrink-0" />
-                  <span><strong>All Executive Pro Features</strong> included</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-amber-400 shrink-0" />
-                  <span>Lifetime Access — No Monthly Bills</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-amber-400 shrink-0" />
-                  <span>Exclusive Founder Gold Badge in Profile</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-amber-400 shrink-0" />
-                  <span>Direct Priority Product Advisory Channel</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check size={14} className="text-amber-400 shrink-0" />
-                  <span>All Future AI Engine v7+ Updates Included</span>
-                </li>
-              </ul>
-            </div>
-
-            <button
-              onClick={() => handleCheckout('lifetime')}
-              className="w-full py-2.5 px-4 rounded-xl border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold text-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
-            >
-              <Crown size={13} className="text-amber-400" />
-              <span>Get Founder Pass ($39)</span>
-            </button>
+            </a>
           </div>
 
         </div>
 
-        {/* Indie Creator Support Banner */}
-        <div className="mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
-             style={{ borderColor: 'var(--border-subtle)', color: 'var(--text-muted)' }}>
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <Shield size={16} className="text-emerald-500 shrink-0" />
-            <span>100% Data Sovereignty · Cancel Anytime · 14-Day Money-Back Guarantee</span>
+        {/* Creator Support Strip */}
+        <div className="p-4 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between text-xs text-zinc-400">
+          <div className="flex items-center gap-2.5">
+            <Coffee size={16} className="text-amber-400" />
+            <span>Love WIRK and want to support ongoing open-source development?</span>
           </div>
-
-          <div className="flex items-center gap-3">
-            <a
-              href={BUY_ME_A_COFFEE}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border hover:border-amber-400/40 transition-colors text-amber-400 hover:text-amber-300 text-xs font-semibold"
-              style={{ borderColor: 'var(--border-subtle)' }}
-            >
-              <Coffee size={13} />
-              <span>Sponsor Creator / Buy Me a Coffee</span>
-              <ExternalLink size={11} className="opacity-70" />
-            </a>
-          </div>
+          <a
+            href={BUY_ME_A_COFFEE_MAIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 transition-colors"
+          >
+            <span>Buy Me a Coffee</span>
+            <ExternalLink size={12} />
+          </a>
         </div>
 
       </div>

@@ -36,7 +36,7 @@ const ACCENT_COLORS = [
 const SETTINGS_SECTIONS = [
   { id: 'general',       label: 'General & Profile', icon: User,     desc: 'Profile, workspace preferences & audio' },
   { id: 'byok',          label: 'AI Keys & BYOK',    icon: Key,      desc: 'Bring your own Gemini API key & model settings' },
-  { id: 'billing',       label: 'Plan & Billing',    icon: Crown,    desc: 'Executive Pro, lifetime pass & licenses' },
+  { id: 'billing',       label: 'Cloud & Memberships', icon: Crown,    desc: 'WIRK Cloud sync ($5/mo) & creator support' },
   { id: 'appearance',    label: 'Appearance',        icon: Moon,     desc: 'Themes, accent colors & visual effects' },
   { id: 'notifications', label: 'Notifications',     icon: Bell,     desc: 'Alerts, sound chimes & reminders' },
   { id: 'data',          label: 'Data & Storage',    icon: Database, desc: 'Sync status, offline exports & imports' },
@@ -794,7 +794,7 @@ export default function ProfileModal({
                         <span className="text-xs font-bold text-amber-500 flex items-center gap-1.5">
                           <Crown size={14} /> Executive Pro
                         </span>
-                        <span className="text-xs font-mono font-bold" style={{ color: 'var(--text-hi)' }}>$9 / mo</span>
+                        <span className="text-xs font-mono font-bold" style={{ color: 'var(--text-hi)' }}>$5 / mo</span>
                       </div>
                       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                         Unlimited ARIA AI orchestrations, full voice dispatch, custom model switching, and priority real-time cloud backup.
@@ -814,7 +814,7 @@ export default function ProfileModal({
                         <span className="text-xs font-bold flex items-center gap-1.5" style={{ color: 'var(--text-hi)' }}>
                           <Star size={14} className="text-emerald-400" /> Founder Lifetime Pass
                         </span>
-                        <span className="text-xs font-mono font-bold text-emerald-400">$39 once</span>
+                        <span className="text-xs font-mono font-bold text-emerald-400">$49 once</span>
                       </div>
                       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                         Pay once, own WIRK forever. All future v6.x and v7 updates, offline-first guarantees, and lifetime VIP founder badge.
@@ -828,6 +828,25 @@ export default function ProfileModal({
                     </div>
                   </div>
                 </SettingGroup>
+
+                {/* Buy Me a Coffee Direct Membership Banner */}
+                <div className="p-4 rounded-xl border border-amber-500/20 bg-amber-500/5 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">☕</span>
+                    <div>
+                      <p className="text-xs font-bold text-white">Don't want to manage API keys & local backups?</p>
+                      <p className="text-[11px] text-zinc-400">Join WIRK Cloud ($5/mo) or Founder pass on Buy Me a Coffee for zero-setup multi-device sync.</p>
+                    </div>
+                  </div>
+                  <a
+                    href="https://buymeacoffee.com/bilal07040s/membership"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-1.5 rounded-lg bg-amber-400 text-zinc-950 font-bold text-xs shrink-0 hover:bg-amber-300 transition-colors shadow-xs"
+                  >
+                    View Memberships
+                  </a>
+                </div>
 
                 {/* Feature Comparison Rows */}
                 <SettingGroup title="Executive Tier Privileges">
