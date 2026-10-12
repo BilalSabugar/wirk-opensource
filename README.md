@@ -58,8 +58,8 @@ WIRK Community runs **100% locally in your browser** with zero external database
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/aethronlabs/wirk.git
-cd wirk
+git clone https://github.com/BilalSabugar/wirk-opensource.git
+cd wirk-opensource
 ```
 
 ### 2. Install dependencies

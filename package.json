@@ -1,5 +1,5 @@
 {
-  "name": "wirk",
+  "name": "wirk-opensource",
   "private": false,
   "version": "1.0.0",
   "type": "module",
@@ -31,13 +31,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aethronlabs/wirk.git"
+    "url": "https://github.com/BilalSabugar/wirk-opensource.git"
   },
   "author": "Bilal Sabugar <bilal.07.04.07@gmail.com>",
   "bugs": {
-    "url": "https://github.com/aethronlabs/wirk/issues"
+    "url": "https://github.com/BilalSabugar/wirk-opensource/issues"
   },
-  "homepage": "https://github.com/aethronlabs/wirk#readme",
+  "homepage": "https://github.com/BilalSabugar/wirk-opensource#readme",
   "keywords": [
     "productivity",
     "executive-ai",

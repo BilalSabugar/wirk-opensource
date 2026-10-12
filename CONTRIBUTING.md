@@ -6,8 +6,8 @@ Thank you for your interest in contributing to WIRK! We welcome contributions fr
 
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/your-username/wirk.git
-   cd wirk
+   git clone https://github.com/BilalSabugar/wirk-opensource.git
+   cd wirk-opensource
    ```
 
 2. Install dependencies:
