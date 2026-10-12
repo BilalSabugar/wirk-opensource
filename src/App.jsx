@@ -209,20 +209,12 @@ export default function App() {
         reply = data.reply || '';
         finishReason = data.finishReason || 'STOP';
       }
-    } catch (apiErr) {
-      if (!activeGeminiKey) {
-        reply = "👋 **Welcome to WIRK Open-Source!**\n\nTo enable ARIA's autonomous workspace reasoning and project breakdowns, please paste your Google Gemini API key in **Settings (Press 'P' or click your avatar) → AI Keys & BYOK**.\n\nYour key is kept safe and local inside your browser's local storage and calls Google Gemini directly with zero backend required.";
-        finishReason = 'STOP';
-      } else {
-        throw apiErr;
-      }
-    }
 
+      const duration = performance.now() - t0;
       recordAiUsage({
         endpoint: 'chat',
         feature: 'ARIA',
         latencyMs: duration,
-        usage: data.usageMetadata,
         success: true,
         statusText: '200 OK',
         note: `Generated ${reply.length} chars (finishReason: ${finishReason})`
@@ -287,14 +279,18 @@ export default function App() {
       }
     } catch (err) {
       console.error('[aria chat]', err);
+      const fallbackHelp = !activeGeminiKey
+        ? "👋 **Welcome to WIRK Open-Source!**\n\nTo activate ARIA with your own Google Gemini API key, click your avatar or press **P** to open **Settings → AI Keys & BYOK**.\n\nYour key is kept safe and local inside your browser's local storage and calls Google Gemini directly with zero backend required."
+        : "I'm sorry, I couldn't process that request right now. Please check your Gemini API key in Settings (P) or try again.";
+
       setAriaMessages(m => {
-        const next = [...m, { id: 'err-' + Date.now(), role: 'model', text: "I'm sorry, I couldn't process that request right now. Please try again." }];
+        const next = [...m, { id: 'err-' + Date.now(), role: 'model', text: fallbackHelp, approvedProposals: [] }];
         saveAriaMessages(next);
         return next;
       });
       setAriaOrbState('idle');
     }
-  }, [ariaIsMuted, saveAriaMessages]);
+  }, [ariaIsMuted, saveAriaMessages, tasks, projects]);
 
   const handleContinueAriaMessage = useCallback(async (msgId, partialText) => {
     const prompt = "Please continue immediately from where you stopped. Complete all remaining tasks and emit the full ```json_proposal``` block with all CREATE_PROJECT and CREATE_TASK actions now.";
