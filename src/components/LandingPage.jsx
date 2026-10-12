@@ -104,7 +104,7 @@ export default function LandingPage({
                 borderColor: 'rgba(245,158,11,0.4)',
                 color: '#f59e0b'
               }}
-              title="View Pro Plans & Lifetime Pass"
+              title="View Pro & Executive Plans"
             >
               <Crown size={13} />
               <span>Upgrade</span>
@@ -461,7 +461,7 @@ export default function LandingPage({
               Generous free tier with 1,500 daily requests. Upgrade to Executive Pro ($9/mo) or Founder Lifetime Pass for unlimited high-speed AI models, priority Firestore synchronization, and zero telemetry.
             </p>
             <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-amber-500 group-hover:translate-x-1 transition-transform">
-              <span>View Plans & Lifetime Pass</span>
+              <span>View Plans & Memberships</span>
               <ArrowRight size={13} />
             </div>
           </div>

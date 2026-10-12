@@ -807,23 +807,23 @@ export default function ProfileModal({
                       </button>
                     </div>
 
-                    {/* Lifetime Pass Card */}
+                    {/* Executive Kinetic Card */}
                     <div className="p-4 rounded-xl border space-y-3 relative overflow-hidden"
-                         style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-mid)' }}>
+                         style={{ background: 'var(--bg-surface)', borderColor: 'rgba(245,158,11,0.3)' }}>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold flex items-center gap-1.5" style={{ color: 'var(--text-hi)' }}>
-                          <Star size={14} className="text-emerald-400" /> Founder Lifetime Pass
+                          <Crown size={14} className="text-amber-400" /> Executive Kinetic
                         </span>
-                        <span className="text-xs font-mono font-bold text-emerald-400">$49 once</span>
+                        <span className="text-xs font-mono font-bold text-amber-400">$12 / mo</span>
                       </div>
                       <p className="text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                        Pay once, own WIRK forever. All future v6.x and v7 updates, offline-first guarantees, and lifetime VIP founder badge.
+                        Unlimited ARIA reasoning, automated evening retrospectives, priority Gemini 2.5 latency, and direct founder support.
                       </p>
                       <button
                         onClick={() => onUpgrade?.()}
-                        className="w-full py-2 rounded-lg text-xs font-bold border border-emerald-500/40 text-emerald-500 hover:bg-emerald-500/10 transition-colors"
+                        className="w-full py-2 rounded-lg text-xs font-bold border border-amber-500/40 text-amber-400 hover:bg-amber-500/10 transition-colors"
                       >
-                        Claim Lifetime Pass
+                        Select Executive Tier
                       </button>
                     </div>
                   </div>
@@ -835,7 +835,7 @@ export default function ProfileModal({
                     <span className="text-xl">☕</span>
                     <div>
                       <p className="text-xs font-bold text-white">Don't want to manage API keys & local backups?</p>
-                      <p className="text-[11px] text-zinc-400">Join WIRK Cloud ($5/mo) or Founder pass on Buy Me a Coffee for zero-setup multi-device sync.</p>
+                      <p className="text-[11px] text-zinc-400">Join Pro Operator ($5/mo) or Executive Kinetic ($12/mo) on Buy Me a Coffee for zero-setup multi-device sync.</p>
                     </div>
                   </div>
                   <a
